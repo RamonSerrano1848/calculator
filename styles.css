@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600");
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.calculator{
+    border: 1px black solid;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.15), 0px 2px 4px 0px rgba(0,0,0,0.12);
+    height: 20rem;
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    max-inline-size: 22rem; /* sets the size of the div in inline-direction */
+}
+.calculator__output{
+    height: 4rem;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: grey;
+    font-size: 2rem;
+    text-align: end;
+
+}
+.calculator__keys{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+
+}
+.calculator__key{
+    border-radius: 20px;
+    border-style: none;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    background-color: darkslategray;
+}
+.calculator__key--operator{
+
+}
+
+.calculator__key--enter{
+    grid-row-start: 1;
+    grid-row-end: 5;
+    grid-column-start: 4;
+    grid-column-end: 4;
+
+}
