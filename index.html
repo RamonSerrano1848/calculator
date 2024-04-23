@@ -10,30 +10,34 @@
 
 <body>
     <div class="calculator">
-        <div class="calculator__output">0.0</div>
+        <div class="calculator__output">0</div>
         <div class="calculator__keys">
-            <button class="calculator__key calculator__key--operator">+</button>
-            <button class="calculator__key calculator__key--operator">-</button>
-            <button class="calculator__key calculator__key--operator">*</button>
-            <button class="calculator__key calculator__key--operator">%</button>
-            <button class="calculator__key">7</button>
-            <button class="calculator__key">8</button>
-            <button class="calculator__key">9</button>
-            <button class="calculator__key">4</button>
-            <button class="calculator__key">5</button>
-            <button class="calculator__key">6</button>
-            <button class="calculator__key">1</button>
-            <button class="calculator__key">2</button>
-            <button class="calculator__key">3</button>
-            <button class="calculator__key">0</button>
-            <button class="calculator__key">.</button>
-            <button class="calculator__key">AC</button>
+            <button class="calculator__key calculator__key--operator add">+</button>
+            <button class="calculator__key calculator__key--operator subtract">-</button>
+            <button class="calculator__key calculator__key--operator multiply">*</button>
+            <button class="calculator__key calculator__key--operator divide">/</button>
+            <button class="calculator__key seven">7</button>
+            <button class="calculator__key eight">8</button>
+            <button class="calculator__key nine">9</button>
+            <button class="calculator__key four">4</button>
+            <button class="calculator__key five">5</button>
+            <button class="calculator__key six">6</button>
+            <button class="calculator__key one">1</button>
+            <button class="calculator__key two">2</button>
+            <button class="calculator__key three">3</button>
+            <button class="calculator__key zero">0</button>
+            <button class="calculator__key comma">.</button>
+            <button class="calculator__key AC">AC</button>
             <button class="calculator__key calculator__key--enter">=</button>
         </div>
     </div>
 </body>
 
 <script>
+
+let num1 = '';
+let num2 = '';
+let op = '';
 
 function add(num1, num2) {
     result = num1 + num2;
@@ -58,20 +62,79 @@ function exp(num1, num2) {
 
 function calculate (num1, num2, op) {
     if (op === '+') {
+        num1 = parseFloat(num1);
+        num2 = parseFloat(num2);
         result = add(num1, num2);
     }
     else if(op === '-') {
+        num1 = parseFloat(num1);
+        num2 = parseFloat(num2);
         result = subtract(num1, num2);
     }
     else if(op === '*') {
+        num1 = parseFloat(num1);
+        num2 = parseFloat(num2);
         result = multiply(num1, num2);
     }
-    else if(op === '%') {
+    else if(op === '/') {
+        num1 = parseFloat(num1);
+        num2 = parseFloat(num2);
         result = divide(num1, num2);
     }
     return result;
+    num1 = result;
+    num2 = '';
 };
 
+const output = document.querySelector('.calculator__output');
+
+const operand_btns = document.querySelectorAll('.calculator__key');
+operand_btns.forEach(
+    function(node) {
+        let currentKey = '';
+    node.addEventListener('click', () => {
+        if (node.textContent === '+'|| node.textContent ==='-' || node.textContent ==='*' || node.textContent ==='/') {
+            op = (node.textContent);
+            // if (num1 != '' && num2 != '') {
+            //     let result = calculate(num1, num2, op);
+            //     output.innerText = (result);
+            //     num1 = result;
+            //     num2 = '';
+            //     op = '';
+            // }
+        }
+        else if (node.textContent === '=') {
+            let result = calculate(num1, num2, op);
+            output.innerText = (result);
+            num1 = result;
+            num2 = '';
+            op = '';
+        }
+        else if (node.textContent === 'AC') {
+            num1 = '';
+            num2 = '';
+            result = 0;
+            op = '';
+            output.innerText = ('0');
+        }
+        // else if (node.textContent ==='.') {
+        //     currentKey = node.textContent;
+        //     if (
+            
+        // }
+        else {
+            currentKey = node.textContent;
+            if (op === '') {
+                num1 += currentKey;
+                output.innerText = num1;
+            }
+            else {
+                num2 += currentKey;
+                output.innerText = num2;
+            }
+            
+    }
+})});
 
 </script>
 
